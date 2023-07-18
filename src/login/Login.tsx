@@ -7,7 +7,6 @@ function Login() {
 
   const [formValue, setFormValue] = useState(initialFormValue);
   const [loading, setLoading] = useState(false);
-  const [isSaved, setIsSaved] = useState(false);
   const navigate = useNavigate();
 
   function isValid() {
