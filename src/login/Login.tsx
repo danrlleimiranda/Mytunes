@@ -15,7 +15,7 @@ function Login() {
 
   const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
-    const saveUser = await createUser(formValue);
+    await createUser(formValue);
   };
 
   const { name } = formValue;
