@@ -1,6 +1,17 @@
+import { Route, Routes } from 'react-router-dom';
+import { useState } from 'react';
+import Login from './login/Login';
+import Search from './Search/Search';
+
 function App() {
   return (
-    <p>Trybe</p>
+    <Routes>
+      <Route
+        path="/"
+        element={ <Login /> }
+      />
+      <Route path="/search" element={ <Search /> } />
+    </Routes>
   );
 }
 
