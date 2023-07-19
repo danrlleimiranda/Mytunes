@@ -42,7 +42,6 @@ function Search({ albums, setAlbums }: SearchProps) {
     if (albumsList.length > 0) {
       setAlbums([...albumsList]);
       setIsAlbum(true);
-      console.log(albumsList);
     } else {
       setAlbums([]);
       setIsAlbum(false);
