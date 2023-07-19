@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createUser } from '../services/userAPI';
+import { createUser } from '../../services/userAPI';
 import './login.css';
+import Loading from '../../components/Loading';
 
 function Login() {
   const initialFormValue = { name: '' };
@@ -29,7 +30,7 @@ function Login() {
   };
 
   if (loading) {
-    return (<h1>Carregando...</h1>);
+    return (<Loading />);
   }
 
   return (
