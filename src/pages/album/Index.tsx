@@ -30,7 +30,7 @@ function Album() {
       <div>
         <h1 data-testid="artist-name">{album?.artistName}</h1>
         <h2 data-testid="album-name">{album?.collectionName}</h2>
-        <img src={ album?.artworkUrl100 } alt="" />
+        <img src={ album?.artworkUrl100 } alt={ `${album?.collectionName}` } />
       </div>
       <div>
         {onlyMusics.map((music) => (
@@ -38,6 +38,7 @@ function Album() {
             key={ music.trackName }
             trackName={ music.trackName }
             previewUrl={ music.previewUrl }
+            trackId={ music.trackId }
           />
         ))}
 
