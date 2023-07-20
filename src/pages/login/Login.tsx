@@ -34,35 +34,40 @@ function Login() {
   }
 
   return (
+    <div className="login-container">
 
-    <form>
-      <label htmlFor="username">
-        <input
-          type="text"
-          id="username"
-          name="name"
-          value={ name }
-          data-testid="login-name-input"
-          onChange={ (event) => handleChange(event) }
-        />
-      </label>
-      <button
-        type="submit"
-        disabled={ isValid() }
-        data-testid="login-submit-button"
-        onClick={ (event) => {
-          handleSubmit(event);
-          setLoading(true);
-          setTimeout(() => {
-            navigate('/search');
-            setLoading(false);
-          }, 2500);
-        } }
-      >
-        Entrar
+      <form className="form-login">
+        <label htmlFor="username">
+          <input
+            type="text"
+            id="username"
+            name="name"
+            value={ name }
+            data-testid="login-name-input"
+            className="input-login"
+            placeholder="Digite seu login"
+            onChange={ (event) => handleChange(event) }
+          />
+        </label>
+        <button
+          type="submit"
+          disabled={ isValid() }
+          data-testid="login-submit-button"
+          className="button-login"
+          onClick={ (event) => {
+            handleSubmit(event);
+            setLoading(true);
+            setTimeout(() => {
+              navigate('/search');
+              setLoading(false);
+            }, 2500);
+          } }
+        >
+          Entrar
 
-      </button>
-    </form>
+        </button>
+      </form>
+    </div>
 
   );
 }

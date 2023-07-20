@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import searchAlbumsAPI from '../../services/searchAlbumsAPI';
 import { AlbumType } from '../../types';
 import Loading from '../../components/Loading';
-import Album from '../../components/AlbumCreate';
+import AlbumCreate from '../../components/AlbumCreate';
+import './search.css';
 
 type SearchProps = {
   albums: AlbumType[] | null;
@@ -56,8 +57,8 @@ function Search({ albums, setAlbums }: SearchProps) {
 
   return (
     <>
-      <div>
-        <form>
+      <div className="search-container">
+        <form className="form-search">
           <label htmlFor="search">
             <input
               type="text"
@@ -65,6 +66,7 @@ function Search({ albums, setAlbums }: SearchProps) {
               id="search"
               data-testid="search-artist-input"
               value={ formValue }
+              className="input-search"
               onChange={ (event) => handleChange(event) }
             />
           </label>
@@ -72,6 +74,7 @@ function Search({ albums, setAlbums }: SearchProps) {
             type="submit"
             data-testid="search-artist-button"
             disabled={ isValid() }
+            className="button-search"
             onClick={ (event) => handleSubmit(event) }
           >
             Pesquisar
@@ -82,13 +85,15 @@ function Search({ albums, setAlbums }: SearchProps) {
       </div>
       {albums !== null && albums.length > 0
       && <p>{`Resultado de álbuns de: ${inputValue} `}</p>}
-      {!isAlbum && <h1>Nenhum álbum foi encontrado</h1>}
-      {isAlbum && albums !== null && albums.map((album) => (
-        <Album
-          key={ album.collectionId }
-          album={ album }
-        />
-      ))}
+      <div className="album-list">
+        {!isAlbum && <h1>Nenhum álbum foi encontrado</h1>}
+        {isAlbum && albums !== null && albums.map((album) => (
+          <AlbumCreate
+            key={ album.collectionId }
+            album={ album }
+          />
+        ))}
+      </div>
     </>
   );
 }

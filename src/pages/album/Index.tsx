@@ -9,6 +9,7 @@ function Album() {
   const [album, setAlbum] = useState<AlbumType>();
   const [loading, setLoading] = useState(false);
   const [onlyMusics, setOnlyMusics] = useState<SongType[]>([]);
+
   const { id } = useParams();
 
   useEffect(() => {
