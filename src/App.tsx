@@ -6,6 +6,8 @@ import { AlbumType, SongType } from './types';
 import Album from './pages/album/Index';
 import Layout from './components/Layout';
 import Favorites from './pages/favorites/Favorites';
+import Profile from './pages/profile/Profile';
+import NotFound from './pages/notFound/NotFound';
 
 function App() {
   const [albums, setAlbums] = useState<AlbumType[]>([]);
@@ -38,11 +40,12 @@ function App() {
             favoriteSongs={ favoriteSongs }
             setFavoriteSongs={ setFavoriteSongs }
             handleDelete={ handleDelete }
-
           /> }
         />
+        <Route path="/profile" element={ <Profile /> } />
 
       </Route>
+      <Route path="/*" element={ <NotFound /> } />
     </Routes>
   );
 }
