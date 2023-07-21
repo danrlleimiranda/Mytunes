@@ -8,14 +8,12 @@ type MusicCardProp = {
   previewUrl: string
   trackName: string
   trackId: number
+  handleDelete: (trackId: number) => void
 };
 
-function MusicCard({ previewUrl, trackName, trackId }: MusicCardProp) {
+function MusicCard({ previewUrl, trackName, trackId, handleDelete }: MusicCardProp) {
   const [checked, setChecked] = useState<boolean>();
-  const [favorite, setFavorite] = useState<boolean>();
   const [loading, setLoading] = useState(false);
-
-  // const [loading, setLoading] = useState(false);
 
   const handleChange = () => {
     setChecked(!checked);
@@ -30,6 +28,7 @@ function MusicCard({ previewUrl, trackName, trackId }: MusicCardProp) {
       removeSong({ previewUrl,
         trackName,
         trackId });
+      handleDelete(trackId);
     }
   };
 
@@ -40,7 +39,7 @@ function MusicCard({ previewUrl, trackName, trackId }: MusicCardProp) {
       const favoriteSongs = response.map((song) => song.trackId);
       setLoading(false);
       if (favoriteSongs.includes(trackId)) {
-        setFavorite(true);
+        setChecked(true);
       }
     };
     fetchData();
@@ -62,12 +61,12 @@ function MusicCard({ previewUrl, trackName, trackId }: MusicCardProp) {
         <code>audio</code>
       </audio>
       <label htmlFor={ `${trackId}` } data-testid={ `checkbox-music-${trackId}` }>
-        {checked || favorite ? <img src={ checkedHeart } alt="favorite" />
+        {checked ? <img src={ checkedHeart } alt="favorite" />
           : <img src={ emptyHeart } alt="favorite" />}
         <input
           type="checkbox"
           id={ `${trackId}` }
-          checked={ checked || favorite }
+          checked={ checked }
           onChange={ handleChange }
           className="checks"
           name="musics"

@@ -5,7 +5,11 @@ import Loading from '../../components/Loading';
 import { SongType, AlbumType } from '../../types';
 import MusicCard from '../../components/MusicCard';
 
-function Album() {
+export type AlbumProps = {
+  handleDelete:(trackId: number) => void
+};
+
+function Album({ handleDelete }: AlbumProps) {
   const [album, setAlbum] = useState<AlbumType>();
   const [loading, setLoading] = useState(false);
   const [onlyMusics, setOnlyMusics] = useState<SongType[]>([]);
@@ -40,6 +44,7 @@ function Album() {
             trackName={ music.trackName }
             previewUrl={ music.previewUrl }
             trackId={ music.trackId }
+            handleDelete={ handleDelete }
           />
         ))}
 
