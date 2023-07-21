@@ -83,16 +83,18 @@ function Search({ albums, setAlbums }: SearchProps) {
         </form>
 
       </div>
-      {albums !== null && albums.length > 0
+      <div>
+        {albums !== null && albums.length > 0
       && <p>{`Resultado de álbuns de: ${inputValue} `}</p>}
-      <div className="album-list">
-        {!isAlbum && <h1>Nenhum álbum foi encontrado</h1>}
-        {isAlbum && albums !== null && albums.map((album) => (
-          <AlbumCreate
-            key={ album.collectionId }
-            album={ album }
-          />
-        ))}
+        <div className="album-list">
+          {!isAlbum && <h1>Nenhum álbum foi encontrado</h1>}
+          {isAlbum && albums !== null && albums.map((album) => (
+            <AlbumCreate
+              key={ album.collectionId }
+              album={ album }
+            />
+          ))}
+        </div>
       </div>
     </>
   );
