@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { getUser, updateUser } from '../../services/userAPI';
 import { UserType } from '../../types';
 import Loading from '../../components/Loading/Loading';
-import Userimage from '../../../images/icon.webp';
+import Userimage from '../../images/icon.png';
 import './profileEdit.css';
 
 type ProfileEditProps = {

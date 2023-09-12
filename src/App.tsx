@@ -9,7 +9,7 @@ import Favorites from './pages/favorites/Favorites';
 import Profile from './pages/profile/Profile';
 import NotFound from './pages/notFound/NotFound';
 import ProfileEdit from './pages/profileEdit/ProfileEdit';
-import iconImage from '../images/icon.webp';
+import iconImage from './images/icon.png';
 
 function App() {
   const [albums, setAlbums] = useState<AlbumType[]>([]);

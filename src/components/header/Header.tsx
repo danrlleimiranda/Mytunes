@@ -4,7 +4,7 @@ import { getUser } from '../../services/userAPI';
 import './header.css';
 import { UserType } from '../../types';
 import trybeTunesLogo from '../../images/trybetunes.png';
-import Userimage from '../../../images/icon.webp';
+import Userimage from '../../images/icon.png';
 
 type HeaderProps = {
   profile: UserType

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { getUser } from '../../services/userAPI';
 import { UserType } from '../../types';
 import Loading from '../../components/Loading/Loading';
-import Userimage from '../../../images/icon.webp';
+import Userimage from '../../images/icon.png';
 import './profile.css';
 
 type ProfileProps = {
