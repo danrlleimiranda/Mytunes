@@ -1,10 +1,15 @@
 import { Outlet } from 'react-router-dom';
-import Header from './Header';
+import Header from './header/Header';
+import { UserType } from '../types';
 
-function Layout() {
+type LayoutProps = {
+  profile: UserType
+};
+
+function Layout({ profile }: LayoutProps) {
   return (
     <>
-      <Header />
+      <Header profile={ profile } />
       <Outlet />
     </>
   );

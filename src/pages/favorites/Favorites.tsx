@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
-import MusicCard from '../../components/MusicCard';
+import MusicCard from '../../components/musicCard/MusicCard';
 import { SongType } from '../../types';
 import { getFavoriteSongs } from '../../services/favoriteSongsAPI';
-import Loading from '../../components/Loading';
+import Loading from '../../components/Loading/Loading';
 
 type FavoriteProps = {
   favoriteSongs: SongType[]
   setFavoriteSongs: (favoritesList: SongType[]) => void
   handleDelete: (trackId: number) => void
+
 };
 
-function Favorites({ favoriteSongs, setFavoriteSongs, handleDelete }: FavoriteProps) {
+function Favorites({ favoriteSongs, setFavoriteSongs,
+  handleDelete }: FavoriteProps) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -31,13 +33,16 @@ function Favorites({ favoriteSongs, setFavoriteSongs, handleDelete }: FavoritePr
 
   return (
     <div>
-      {favoriteSongs.map((song) => (<MusicCard
-        key={ song.trackId }
-        previewUrl={ song.previewUrl }
-        trackName={ song.trackName }
-        trackId={ song.trackId }
-        handleDelete={ handleDelete }
-      />))}
+      <p className="favorite-title">Músicas favoritas:</p>
+      {favoriteSongs.map((song) => (
+        <MusicCard
+          key={ song.trackId }
+          previewUrl={ song.previewUrl }
+          trackName={ song.trackName }
+          trackId={ song.trackId }
+          handleDelete={ handleDelete }
+        />
+      ))}
     </div>
   );
 }

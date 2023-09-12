@@ -2,11 +2,18 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getUser } from '../../services/userAPI';
 import { UserType } from '../../types';
-import Loading from '../../components/Loading';
+import Loading from '../../components/Loading/Loading';
+import Userimage from '../../../images/icon.webp';
+import './profile.css';
 
-function Profile() {
+type ProfileProps = {
+  profile: UserType;
+  setProfile: (profile: UserType) => void
+};
+
+function Profile({ profile, setProfile }: ProfileProps) {
   const [loading, setLoading] = useState(false);
-  const [profile, setProfile] = useState<UserType>();
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -21,27 +28,27 @@ function Profile() {
     return (<Loading />);
   }
   return (
-    <div>
-      <Link to="/profile/edit">Editar perfil</Link>
-      <img
-        src={ profile?.image }
-        alt={ `${profile?.name}` }
-        data-testid="profile-image"
-      />
+    <div className="profile">
+      <div className="editProfile">
+        <img
+          src={ profile.image === '' ? Userimage : profile.image }
+          alt={ `${profile.name}` }
+          data-testid="profile-image"
+        />
+        <Link to="/profile/edit">Editar perfil</Link>
+      </div>
       <div>
         <p>Nome</p>
-        <p>{profile?.name}</p>
+        <p>{profile.name}</p>
       </div>
       <div>
         <p>E-mail</p>
-        <p>{profile?.email}</p>
+        <p>{profile.email}</p>
       </div>
       <div>
         <p>Descrição</p>
-        <p>{profile?.description}</p>
+        <p>{profile.description}</p>
       </div>
-      Profile
-
     </div>
   );
 }

@@ -1,30 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import searchAlbumsAPI from '../../services/searchAlbumsAPI';
 import { AlbumType } from '../../types';
-import Loading from '../../components/Loading';
-import AlbumCreate from '../../components/AlbumCreate';
+import Loading from '../../components/Loading/Loading';
+import AlbumCreate from '../../components/albumCreate/AlbumCreate';
 import './search.css';
 
 type SearchProps = {
   albums: AlbumType[] | null;
   setAlbums: (albums: AlbumType[]) => void
+  inputValue: string;
+  setInputValue: (value: string) => void;
 };
 
-function Search({ albums, setAlbums }: SearchProps) {
+function Search({ albums, setAlbums, inputValue, setInputValue }: SearchProps) {
   const [formValue, setFormValue] = useState('');
   const [loading, setLoading] = useState(false);
-  const [inputValue, setInputValue] = useState<string>('');
+
   const [isAlbum, setIsAlbum] = useState<boolean>(true);
 
   function isValid() {
     return formValue.length < 2;
   }
-  useEffect(() => {
-    const fetchData = async () => {
-
-    };
-    fetchData();
-  }, [formValue]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
@@ -83,7 +79,7 @@ function Search({ albums, setAlbums }: SearchProps) {
         </form>
 
       </div>
-      <div>
+      <div className="results">
         {albums !== null && albums.length > 0
       && <p>{`Resultado de álbuns de: ${inputValue} `}</p>}
         <div className="album-list">

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import checkedHeart from '../images/checked_heart.png';
-import emptyHeart from '../images/empty_heart.png';
+import checkedHeart from '../../images/checked_heart.png';
+import emptyHeart from '../../images/empty_heart.png';
 import './musicCard.css';
-import { addSong, removeSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+import { addSong, removeSong, getFavoriteSongs } from '../../services/favoriteSongsAPI';
 
 type MusicCardProp = {
   previewUrl: string
@@ -11,7 +11,8 @@ type MusicCardProp = {
   handleDelete: (trackId: number) => void
 };
 
-function MusicCard({ previewUrl, trackName, trackId, handleDelete }: MusicCardProp) {
+function MusicCard({ previewUrl, trackName, trackId,
+  handleDelete }: MusicCardProp) {
   const [checked, setChecked] = useState<boolean>();
   const [loading, setLoading] = useState(false);
 
@@ -47,12 +48,17 @@ function MusicCard({ previewUrl, trackName, trackId, handleDelete }: MusicCardPr
 
   if (loading) {
     return (
-      <p>Carregando...</p>
+      <div className="loading-status">
+        <p>Carregando...</p>
+      </div>
     );
   }
   return (
-    <div>
-      <p>{trackName}</p>
+    <div className="song-card">
+      <div>
+        <p>{trackName}</p>
+      </div>
+
       <audio data-testid="audio-component" src={ previewUrl } controls>
         <track kind="captions" />
         O seu navegador não suporta o elemento
@@ -60,20 +66,22 @@ function MusicCard({ previewUrl, trackName, trackId, handleDelete }: MusicCardPr
         {' '}
         <code>audio</code>
       </audio>
-      <label htmlFor={ `${trackId}` } data-testid={ `checkbox-music-${trackId}` }>
-        {checked ? <img src={ checkedHeart } alt="favorite" />
-          : <img src={ emptyHeart } alt="favorite" />}
-        <input
-          type="checkbox"
-          id={ `${trackId}` }
-          checked={ checked }
-          onChange={ handleChange }
-          className="checks"
-          name="musics"
-          onClick={ handleClick }
-        />
+      <div className="song">
+        <label htmlFor={ `${trackId}` } data-testid={ `checkbox-music-${trackId}` }>
+          {checked ? <img src={ checkedHeart } alt="favorite" />
+            : <img src={ emptyHeart } alt="favorite" />}
+          <input
+            type="checkbox"
+            id={ `${trackId}` }
+            checked={ checked }
+            onChange={ handleChange }
+            className="checks"
+            name="musics"
+            onClick={ handleClick }
+          />
 
-      </label>
+        </label>
+      </div>
 
     </div>
   );

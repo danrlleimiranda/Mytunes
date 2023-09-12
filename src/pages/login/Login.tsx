@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createUser } from '../../services/userAPI';
 import './login.css';
-import Loading from '../../components/Loading';
+import Loading from '../../components/Loading/Loading';
+import trybeTunesLogo from '../../images/trybetunes.png';
 
 function Login() {
   const initialFormValue = { name: '' };
@@ -37,6 +38,7 @@ function Login() {
     <div className="login-container">
 
       <form className="form-login">
+        <img src={ trybeTunesLogo } alt="" />
         <label htmlFor="username">
           <input
             type="text"

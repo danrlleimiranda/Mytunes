@@ -1,10 +1,11 @@
 import React from 'react';
 import { ClipLoader } from 'react-spinners';
+import './loading.css';
 
 function Loading() {
   return (
-    <div>
-      <ClipLoader color="rgba(54, 215, 183, 1)" />
+    <div className="loading">
+      <ClipLoader color="rgba(0, 128, 0, 1)" />
       <h1>
         Carregando...
       </h1>

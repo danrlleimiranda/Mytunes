@@ -2,11 +2,17 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUser, updateUser } from '../../services/userAPI';
 import { UserType } from '../../types';
-import Loading from '../../components/Loading';
+import Loading from '../../components/Loading/Loading';
+import Userimage from '../../../images/icon.webp';
+import './profileEdit.css';
 
-function ProfileEdit() {
+type ProfileEditProps = {
+  profile: UserType
+};
+
+function ProfileEdit({ profile }: ProfileEditProps) {
   const [loading, setLoading] = useState(false);
-  const [userData, setUserData] = useState<UserType>();
+  const [userData, setUserData] = useState<UserType>(profile);
 
   const navigate = useNavigate();
 
@@ -40,7 +46,6 @@ function ProfileEdit() {
     const { target } = event;
     if (userData) {
       setUserData({ ...userData, [target.id]: target.value });
-      console.log(userData);
     }
   }
 
@@ -53,46 +58,55 @@ function ProfileEdit() {
   }
 
   return (
-    <form action="" onSubmit={ (event) => handleSubmit(event) }>
-      <label htmlFor="image">
-        <img src={ userData?.image } alt="" />
+    <form action="" className="form-edit" onSubmit={ (event) => handleSubmit(event) }>
+      <label htmlFor="image" className="edit-image">
+        <img
+          src={ userData.image === '' ? Userimage
+            : userData.image }
+          alt="foto do perfil"
+        />
         <input
           id="image"
           type="text"
-          value={ userData?.image }
+          value={ userData.image }
           data-testid="edit-input-image"
           onChange={ (event) => handleChange(event) }
         />
       </label>
       <label htmlFor="name">
         Nome
+        <p>Você pode usar um nome social se preferir.</p>
         <input
           id="name"
+          className="name"
           type="text"
           data-testid="edit-input-name"
-          value={ userData?.name }
+          value={ userData.name }
           onChange={ (event) => handleChange(event) }
         />
       </label>
       <label htmlFor="email">
         E-mail
+        <p>Utilize um email que seja checado diariamente.</p>
         <input
           id="email"
           type="text"
+          className="name"
           data-testid="edit-input-email"
-          value={ userData?.email }
+          value={ userData.email }
           onChange={ (event) => handleChange(event) }
         />
       </label>
       <label htmlFor="description">
         Descrição
+        <br />
         <textarea
           name=""
           id="description"
-          cols={ 30 }
-          rows={ 10 }
+          cols={ 45 }
+          rows={ 5 }
           data-testid="edit-input-description"
-          value={ userData?.description }
+          value={ userData.description }
           onChange={ (event) => handleChange(event) }
         />
       </label>

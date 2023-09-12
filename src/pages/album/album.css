@@ -1,0 +1,30 @@
+.album-card {
+  align-items: center;
+  background-color: rgb(253, 253, 253, 0.3);
+  border-radius: 20px;
+  color: black;
+  display: flex;
+  margin: 30px auto;
+  margin-bottom: 20px;
+  padding: 30px;
+  width: fit-content;
+}
+
+.album-card p {
+  font-size: 80px;
+}
+
+.album-card img {
+  border-radius: 10px;
+  margin-right: 30px;
+  width: 200px;
+}
+
+.album-card h2 {
+  font-size: 50px;
+}
+
+.songs-list {
+  margin: 50px auto;
+  width: fit-content;
+}
